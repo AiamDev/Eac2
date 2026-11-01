@@ -39,14 +39,14 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element(By.NAME, "password").send_keys(password)
         self.selenium.find_element(By.XPATH, '//input[@value="Log in"]').click()
     
-    def test_eac3(self):
+    def test_eac2(self):
         #Fem login
         self.login("isard", "pirineus")
 
         #Afegim a l'usuari
         self.selenium.get('%s%s' % (self.live_server_url, '/admin/auth/user/add/'))
         self.assertEqual( self.selenium.title , "Add user | Django site admin" )
-        self.selenium.find_element(By.NAME, "username").send_keys("eac3")
+        self.selenium.find_element(By.NAME, "username").send_keys("eac2")
         self.selenium.find_element(By.NAME, "password1").send_keys("Pirineus123")
         self.selenium.find_element(By.NAME, "password2").send_keys("Pirineus123")
         self.selenium.find_element(By.XPATH, '//input[@value="Save"]').click()
@@ -54,7 +54,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
         #Comprobem que existeix l'usuari afegit
         self.selenium.get('%s%s' % (self.live_server_url, '/admin/auth/user/'))
         self.assertEqual( self.selenium.title , "Select user to change | Django site admin" )
-        self.assertTrue( self.selenium.find_elements(By.LINK_TEXT, "eac3"))
+        self.assertTrue( self.selenium.find_elements(By.LINK_TEXT, "eac2"))
 
         #Fem logout
         self.selenium.find_element(By.XPATH, '//form[@id="logout-form"]//button').click()
@@ -62,5 +62,5 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.selenium.delete_all_cookies()
 
         #Utilitzem assertNotEqual per testejar que NO hem entrat
-        self.login("eac3", "Pirineus123")
+        self.login("eac2", "Pirineus123")
         self.assertNotEqual( self.selenium.title , "Site administration | Django site admin" )
