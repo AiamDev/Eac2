@@ -1,0 +1,14 @@
+*.pyc
+/env/
+/venv/
+/static/*
+/media/*
+.env
+db.sqlite3
+.coverage
+__pycache__
+bin/
+include/
+lib/
+lib64
+pyvenv.cfg
